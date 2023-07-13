@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Detail</title>
+    <link rel="shortcut icon" href="../static/user.png" type="image/png">
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: sans-serif;
+    margin-top: 16px;
+    background-position: center;
+    background:linear-gradient(to top right ,
+#9ad4fc , #ade4fa)
+}
+/* Container style */
+.container{
+    background-color: rgba(176, 211, 240, 0.651);
+    max-width: 920px;
+    min-width:850px;
+    width:50%;
+    margin:auto;
+    margin-top:30px;
+    margin-bottom: 30px;
+    border-radius: 30px;
+  border:5px solid #5d662a;
+  padding:20px;
+  opacity: 0.9;
+}
+.heading{
+    width: 100%;
+    margin: auto;
+    color:black;
+    text-align: center;
+    background: url();
+
+}
+.main{
+    width: 800px;
+    margin: 20px auto;
+    /* background-color: #2e5f70; */
+    padding: 10px;
+    border-radius: 4px;
+}
+.name{
+    width: 200px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+.fname{
+    position: relative;
+    left: 298px;
+    top: -29px;
+    width: 219px;
+    line-height: 25px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.lname{
+    position: relative;
+    left: 320px;
+    top: -29px;
+    width: 219px;
+    line-height: 25px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.flabel{
+    position: relative;
+    left: 70px;
+    top: -3px;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+.llabel{
+    position: relative;
+    left: 35px;
+    top: -3px;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+.email{
+    position: relative;
+    left: 297px;
+    line-height: 23px;
+    top: -25px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.age{
+    left: 297px;
+    position: relative;
+    width: 100px;
+    line-height: 23px;
+    top: -25px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.radio{
+    position: relative;
+    left: 284px;
+    padding: 12px;
+    top: -23px;
+}
+.resume{
+    position: relative;
+    left: 295px;
+    top: -21px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+}
+/* Rating */
+.Qname{
+    text-align: center;
+    padding: 10px;
+    margin: 18px;
+}
+.Q{
+    text-transform: capitalize;
+    margin-top: 7px;
+}
+.ans{
+    position: relative;
+    left: 500px;
+    top: -26px;
+    height: 23px;
+    width: 250px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button{
+    width: 152px;
+    height: 40px;
+    top: 30px;
+    position: relative;
+    left: 73px;
+    color:rgb(48, 30, 30);
+    font-size: 16px;
+    font-weight: 400;
+    background: #e2c311; ;
+    border-radius: 10px;
+    border: 2px solid #15e5f4;
+    letter-spacing: 3px;
+    transition: 0.5s;
+}
+
+button:hover{
+    box-shadow: 0 2px 10px 0 #f41550 inset;
+}
+input{
+    padding:5px;
+}
+
+    </style>
+</head>
+
+<body>
+    {% if reg %}
+        <script>alert("{{ reg }}")</script>
+    {% endif %}
+    <div class="container">
+        <!-- Form container -->
+    <div class="heading">
+        <h1>Personality Prediction</h1>
+    </div>
+    <div class="main">
+        <form method="post"  enctype="multipart/form-data">
+             {% csrf_token %}
+            <div id="name">
+                <h3 class="name">Applicant Name</h3>
+                <input placeholder='First Name' class='fname' name='firstname' type="text">
+
+                <input placeholder='Last Name' class='lname' name='lastname' type="text">
+
+            </div>
+
+            <h3 class='name'>Email</h3>
+            <input class='email' name='email' type="email">
+
+            <h3 class='name'>Age</h3>
+            <input class='age' name="n2" type="number" step="1", min="18",max="60">
+
+            <h3 class="name">Gender</h3>
+            <label class='radio'>
+                <input type="radio" name='n1' value="male">
+                <span>Male</span>
+            </label>
+            <label class="radio">
+                <input type="radio" name='n1' value="female">
+                <span>Female</span>
+            </label>
+
+            <h3 class="name">Upload Resume</h3>
+            <input class='resume' name='resume' type="file">
+
+            <div class="Qname">
+                <h3 class="question"> Give rating 1 to 10 to following questions </h3>
+            </div>
+
+
+            <p class="Q">enjoy new experince or thing(openness)</p>
+            <input class='ans' type="number" min="0" max="10" step="1" name="n3" placeholder="1-10">
+            <p class="Q">how often you feel negativity(neuroticism)</p>
+            <input class='ans' type="number" min="0" max="10" step="1" name="n4" placeholder="1-10">
+            <p class="Q">wishing to do one's work well and thoroughhly(conscientiousness)</p>
+            <input class='ans' type="number" min="0" max="10" step="1" name="n5" placeholder="1-10">
+            <p class="Q">how much would you like work with your peers(agreeableness)</p>
+            <input class='ans' type="number" min="0" max="10" step="1" name="n6" placeholder="1-10">
+            <p class="Q">how outgoing and social interaction you like(extraversion)</p>
+            <input class='ans' type="number" min="0" max="10" step="1" name="n7" placeholder="1-10">
+
+            <Button type="submit">Submit</Button>
+
+        </form>
+    </div>
+        <h1>PERSONALITY PREDICTED AS:{{ result }} </h1>
+        <h1>Your Resume {{ result2 }} match to the job description ! </h1>
+        <h5>{{result3}}</h5>
+</div>
+</body>
+
+</html>
